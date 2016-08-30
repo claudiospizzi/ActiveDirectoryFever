@@ -1,0 +1,838 @@
+Directory Server Diagnosis
+
+
+Performing initial setup:
+
+   Trying to find home server...
+
+   * Verifying that the local machine DC11, is a Directory Server.
+   Home Server = DC11
+
+   * Connecting to directory service on server DC11.
+
+   * Identified AD Forest.
+   Collecting AD specific global data
+   * Collecting site info.
+
+   Calling ldap_search_init_page(hld,CN=Sites,CN=Configuration,DC=adds,DC=contoso,DC=com,LDAP_SCOPE_SUBTREE,(objectCategory=ntDSSiteSettings),.......
+   The previous call succeeded
+   Iterating through the sites
+   Looking at base site object: CN=NTDS Site Settings,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=adds,DC=contoso,DC=com
+   Getting ISTG and options for the site
+   * Identifying all servers.
+
+   Calling ldap_search_init_page(hld,CN=Sites,CN=Configuration,DC=adds,DC=contoso,DC=com,LDAP_SCOPE_SUBTREE,(objectClass=ntDSDsa),.......
+   The previous call succeeded....
+   The previous call succeeded
+   Iterating through the list of servers
+   Getting information for the server CN=NTDS Settings,CN=DC11,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=adds,DC=contoso,DC=com
+   objectGuid obtained
+   InvocationID obtained
+   dnsHostname obtained
+   site info obtained
+   All the info for the server collected
+   Getting information for the server CN=NTDS Settings,CN=DC21,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=adds,DC=contoso,DC=com
+   objectGuid obtained
+   InvocationID obtained
+   dnsHostname obtained
+   site info obtained
+   All the info for the server collected
+   Getting information for the server CN=NTDS Settings,CN=DC31,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=adds,DC=contoso,DC=com
+   objectGuid obtained
+   InvocationID obtained
+   dnsHostname obtained
+   site info obtained
+   All the info for the server collected
+   * Identifying all NC cross-refs.
+
+   * Found 3 DC(s). Testing 1 of them.
+
+   Done gathering initial info.
+
+
+Doing initial required tests
+
+
+   Testing server: Default-First-Site-Name\DC11
+
+      Starting test: Connectivity
+
+         * Active Directory LDAP Services Check
+         Determining IP4 connectivity
+         * Active Directory RPC Services Check
+         ......................... DC11 passed test Connectivity
+
+
+
+Doing primary tests
+
+
+   Testing server: Default-First-Site-Name\DC11
+
+      Starting test: Advertising
+
+         The DC DC11 is advertising itself as a DC and having a DS.
+         The DC DC11 is advertising as an LDAP server
+         The DC DC11 is advertising as having a writeable directory
+         The DC DC11 is advertising as a Key Distribution Center
+         The DC DC11 is advertising as a time server
+         The DS DC11 is advertising as a GC.
+         ......................... DC11 passed test Advertising
+
+      Starting test: CheckSecurityError
+
+         * Dr Auth:  Beginning security errors check!
+         Found KDC DC11 for domain adds.contoso.com in site Default-First-Site-Name
+         Checking machine account for DC DC11 on DC DC11.
+         * SPN found :LDAP/DC11.adds.contoso.com/adds.contoso.com
+         * SPN found :LDAP/DC11.adds.contoso.com
+         * SPN found :LDAP/DC11
+         * SPN found :LDAP/DC11.adds.contoso.com/ADDS
+         * SPN found :LDAP/8a0e9e21-3eac-4103-931e-a90efd7876dd._msdcs.adds.contoso.com
+         * SPN found :E3514235-4B06-11D1-AB04-00C04FC2DCD2/8a0e9e21-3eac-4103-931e-a90efd7876dd/adds.contoso.com
+         * SPN found :HOST/DC11.adds.contoso.com/adds.contoso.com
+         * SPN found :HOST/DC11.adds.contoso.com
+         * SPN found :HOST/DC11
+         * SPN found :HOST/DC11.adds.contoso.com/ADDS
+         * SPN found :GC/DC11.adds.contoso.com/adds.contoso.com
+         [DC11] No security related replication errors were found on this DC!
+
+         To target the connection to a specific source DC use /ReplSource:<DC>.
+
+         ......................... DC11 passed test CheckSecurityError
+
+      Starting test: CutoffServers
+
+         * Configuration Topology Aliveness Check
+         * Analyzing the alive system replication topology for DC=ForestDnsZones,DC=adds,DC=contoso,DC=com.
+         * Performing upstream (of target) analysis.
+         * Performing downstream (of target) analysis.
+         * Analyzing the alive system replication topology for DC=DomainDnsZones,DC=adds,DC=contoso,DC=com.
+         * Performing upstream (of target) analysis.
+         * Performing downstream (of target) analysis.
+         * Analyzing the alive system replication topology for CN=Schema,CN=Configuration,DC=adds,DC=contoso,DC=com.
+         * Performing upstream (of target) analysis.
+         * Performing downstream (of target) analysis.
+         * Analyzing the alive system replication topology for CN=Configuration,DC=adds,DC=contoso,DC=com.
+         * Performing upstream (of target) analysis.
+         * Performing downstream (of target) analysis.
+         * Analyzing the alive system replication topology for DC=adds,DC=contoso,DC=com.
+         * Performing upstream (of target) analysis.
+         * Performing downstream (of target) analysis.
+         ......................... DC11 passed test CutoffServers
+
+      Starting test: FrsEvent
+
+         * The File Replication Service Event log test
+         Skip the test because the server is running DFSR.
+
+         ......................... DC11 passed test FrsEvent
+
+      Starting test: DFSREvent
+
+         The DFS Replication Event Log.
+         ......................... DC11 passed test DFSREvent
+
+      Starting test: SysVolCheck
+
+         * The File Replication Service SYSVOL ready test
+         File Replication Service's SYSVOL is ready
+         ......................... DC11 passed test SysVolCheck
+
+      Starting test: FrsSysVol
+
+         * The File Replication Service SYSVOL ready test
+         File Replication Service's SYSVOL is ready
+         ......................... DC11 passed test FrsSysVol
+
+      Starting test: KccEvent
+
+         * The KCC Event log test
+         Found no KCC errors in "Directory Service" Event log in the last 15 minutes.
+         ......................... DC11 passed test KccEvent
+
+      Starting test: KnowsOfRoleHolders
+
+         Role Schema Owner = CN=NTDS Settings,CN=DC11,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=adds,DC=contoso,DC=com
+         Role Domain Owner = CN=NTDS Settings,CN=DC11,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=adds,DC=contoso,DC=com
+         Role PDC Owner = CN=NTDS Settings,CN=DC11,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=adds,DC=contoso,DC=com
+         Role Rid Owner = CN=NTDS Settings,CN=DC11,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=adds,DC=contoso,DC=com
+         Role Infrastructure Update Owner = CN=NTDS Settings,CN=DC11,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=adds,DC=contoso,DC=com
+         ......................... DC11 passed test KnowsOfRoleHolders
+
+      Starting test: MachineAccount
+
+         Checking machine account for DC DC11 on DC DC11.
+         * SPN found :LDAP/DC11.adds.contoso.com/adds.contoso.com
+         * SPN found :LDAP/DC11.adds.contoso.com
+         * SPN found :LDAP/DC11
+         * SPN found :LDAP/DC11.adds.contoso.com/ADDS
+         * SPN found :LDAP/8a0e9e21-3eac-4103-931e-a90efd7876dd._msdcs.adds.contoso.com
+         * SPN found :E3514235-4B06-11D1-AB04-00C04FC2DCD2/8a0e9e21-3eac-4103-931e-a90efd7876dd/adds.contoso.com
+         * SPN found :HOST/DC11.adds.contoso.com/adds.contoso.com
+         * SPN found :HOST/DC11.adds.contoso.com
+         * SPN found :HOST/DC11
+         * SPN found :HOST/DC11.adds.contoso.com/ADDS
+         * SPN found :GC/DC11.adds.contoso.com/adds.contoso.com
+         ......................... DC11 passed test MachineAccount
+
+      Starting test: NCSecDesc
+
+         * Security Permissions check for all NC's on DC DC11.
+         * Security Permissions Check for
+
+           DC=ForestDnsZones,DC=adds,DC=contoso,DC=com
+            (NDNC,Version 3)
+         * Security Permissions Check for
+
+           DC=DomainDnsZones,DC=adds,DC=contoso,DC=com
+            (NDNC,Version 3)
+         * Security Permissions Check for
+
+           CN=Schema,CN=Configuration,DC=adds,DC=contoso,DC=com
+            (Schema,Version 3)
+         * Security Permissions Check for
+
+           CN=Configuration,DC=adds,DC=contoso,DC=com
+            (Configuration,Version 3)
+         * Security Permissions Check for
+
+           DC=adds,DC=contoso,DC=com
+            (Domain,Version 3)
+         ......................... DC11 passed test NCSecDesc
+
+      Starting test: NetLogons
+
+         * Network Logons Privileges Check
+         Verified share \\DC11\netlogon
+         Verified share \\DC11\sysvol
+         ......................... DC11 passed test NetLogons
+
+      Starting test: ObjectsReplicated
+
+         DC11 is in domain DC=adds,DC=contoso,DC=com
+         Checking for CN=DC11,OU=Domain Controllers,DC=adds,DC=contoso,DC=com in domain DC=adds,DC=contoso,DC=com on 1 servers
+            Object is up-to-date on all servers.
+         Checking for CN=NTDS Settings,CN=DC11,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=adds,DC=contoso,DC=com in domain CN=Configuration,DC=adds,DC=contoso,DC=com on 1 servers
+            Object is up-to-date on all servers.
+         ......................... DC11 passed test ObjectsReplicated
+
+      Test omitted by user request: OutboundSecureChannels
+
+      Starting test: Replications
+
+         * Replications Check
+         * Replication Latency Check
+            DC=ForestDnsZones,DC=adds,DC=contoso,DC=com
+               Latency information for 2 entries in the vector were ignored.
+                  2 were retired Invocations.  0 were either: read-only replicas and are not verifiably latent, or dc's no longer replicating this nc.  0 had no latency information (Win2K DC).
+            DC=DomainDnsZones,DC=adds,DC=contoso,DC=com
+               Latency information for 2 entries in the vector were ignored.
+                  2 were retired Invocations.  0 were either: read-only replicas and are not verifiably latent, or dc's no longer replicating this nc.  0 had no latency information (Win2K DC).
+            CN=Schema,CN=Configuration,DC=adds,DC=contoso,DC=com
+               Latency information for 2 entries in the vector were ignored.
+                  2 were retired Invocations.  0 were either: read-only replicas and are not verifiably latent, or dc's no longer replicating this nc.  0 had no latency information (Win2K DC).
+            CN=Configuration,DC=adds,DC=contoso,DC=com
+               Latency information for 2 entries in the vector were ignored.
+                  2 were retired Invocations.  0 were either: read-only replicas and are not verifiably latent, or dc's no longer replicating this nc.  0 had no latency information (Win2K DC).
+            DC=adds,DC=contoso,DC=com
+               Latency information for 2 entries in the vector were ignored.
+                  2 were retired Invocations.  0 were either: read-only replicas and are not verifiably latent, or dc's no longer replicating this nc.  0 had no latency information (Win2K DC).
+         ......................... DC11 passed test Replications
+
+      Starting test: RidManager
+
+         * Available RID Pool for the Domain is 9600 to 1073741823
+         * DC11.adds.contoso.com is the RID Master
+         * DsBind with RID Master was successful
+         * rIDAllocationPool is 1100 to 1599
+         * rIDPreviousAllocationPool is 1100 to 1599
+         * rIDNextRID: 1106
+         ......................... DC11 passed test RidManager
+
+      Starting test: Services
+
+         * Checking Service: EventSystem
+         * Checking Service: RpcSs
+         * Checking Service: NTDS
+         * Checking Service: DnsCache
+         * Checking Service: DFSR
+         * Checking Service: IsmServ
+         * Checking Service: kdc
+         * Checking Service: SamSs
+         * Checking Service: LanmanServer
+         * Checking Service: LanmanWorkstation
+         * Checking Service: w32time
+         * Checking Service: NETLOGON
+         ......................... DC11 passed test Services
+
+      Starting test: SystemLog
+
+         * The System Event log test
+         A warning event occurred.  EventID: 0x8000001D
+
+            Time Generated: 02/05/2016   15:08:22
+
+            Event String:
+
+            The Key Distribution Center (KDC) cannot find a suitable certificate to use for smart card logons, or the KDC certificate could not be verified. Smart card logon may not function correctly if this problem is not resolved. To correct this problem, either verify the existing KDC certificate using certutil.exe or enroll for a new KDC certificate.
+
+         A warning event occurred.  EventID: 0x000003F6
+
+            Time Generated: 02/05/2016   15:38:21
+
+            Event String:
+
+            Name resolution for the name 1.0.0.127.in-addr.arpa timed out after none of the configured DNS servers responded.
+
+         ......................... DC11 passed test SystemLog
+
+      Starting test: Topology
+
+         * Configuration Topology Integrity Check
+         * Analyzing the connection topology for DC=ForestDnsZones,DC=adds,DC=contoso,DC=com.
+         * Performing upstream (of target) analysis.
+         * Performing downstream (of target) analysis.
+         * Analyzing the connection topology for DC=DomainDnsZones,DC=adds,DC=contoso,DC=com.
+         * Performing upstream (of target) analysis.
+         * Performing downstream (of target) analysis.
+         * Analyzing the connection topology for CN=Schema,CN=Configuration,DC=adds,DC=contoso,DC=com.
+         * Performing upstream (of target) analysis.
+         * Performing downstream (of target) analysis.
+         * Analyzing the connection topology for CN=Configuration,DC=adds,DC=contoso,DC=com.
+         * Performing upstream (of target) analysis.
+         * Performing downstream (of target) analysis.
+         * Analyzing the connection topology for DC=adds,DC=contoso,DC=com.
+         * Performing upstream (of target) analysis.
+         * Performing downstream (of target) analysis.
+         ......................... DC11 passed test Topology
+
+      Starting test: VerifyEnterpriseReferences
+
+         ......................... DC11 passed test VerifyEnterpriseReferences
+
+      Starting test: VerifyReferences
+
+         The system object reference (serverReference)
+
+         CN=DC11,OU=Domain Controllers,DC=adds,DC=contoso,DC=com and backlink
+
+         on
+
+         CN=DC11,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=adds,DC=contoso,DC=com
+
+         are correct.
+         The system object reference (serverReferenceBL)
+
+         CN=DC11,CN=Topology,CN=Domain System Volume,CN=DFSR-GlobalSettings,CN=System,DC=adds,DC=contoso,DC=com
+
+         and backlink on
+
+         CN=NTDS Settings,CN=DC11,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=adds,DC=contoso,DC=com
+
+         are correct.
+         The system object reference (msDFSR-ComputerReferenceBL)
+
+         CN=DC11,CN=Topology,CN=Domain System Volume,CN=DFSR-GlobalSettings,CN=System,DC=adds,DC=contoso,DC=com
+
+         and backlink on
+
+         CN=DC11,OU=Domain Controllers,DC=adds,DC=contoso,DC=com are correct.
+         ......................... DC11 passed test VerifyReferences
+
+      Starting test: VerifyReplicas
+
+         ......................... DC11 passed test VerifyReplicas
+
+
+      Starting test: DNS
+
+
+
+         DNS Tests are running and not hung. Please wait a few minutes...
+
+         See DNS test in enterprise tests section for results
+         ......................... DC11 passed test DNS
+
+
+   Running partition tests on : ForestDnsZones
+
+      Starting test: CheckSDRefDom
+
+         ......................... ForestDnsZones passed test CheckSDRefDom
+
+      Starting test: CrossRefValidation
+
+         ......................... ForestDnsZones passed test
+
+         CrossRefValidation
+
+
+   Running partition tests on : DomainDnsZones
+
+      Starting test: CheckSDRefDom
+
+         ......................... DomainDnsZones passed test CheckSDRefDom
+
+      Starting test: CrossRefValidation
+
+         ......................... DomainDnsZones passed test
+
+         CrossRefValidation
+
+
+   Running partition tests on : Schema
+
+      Starting test: CheckSDRefDom
+
+         ......................... Schema passed test CheckSDRefDom
+
+      Starting test: CrossRefValidation
+
+         ......................... Schema passed test CrossRefValidation
+
+
+   Running partition tests on : Configuration
+
+      Starting test: CheckSDRefDom
+
+         ......................... Configuration passed test CheckSDRefDom
+
+      Starting test: CrossRefValidation
+
+         ......................... Configuration passed test CrossRefValidation
+
+
+   Running partition tests on : adds
+
+      Starting test: CheckSDRefDom
+
+         ......................... adds passed test CheckSDRefDom
+
+      Starting test: CrossRefValidation
+
+         ......................... adds passed test CrossRefValidation
+
+
+   Running enterprise tests on : adds.contoso.com
+
+      Starting test: DNS
+
+         Test results for domain controllers:
+
+
+            DC: DC11.adds.contoso.com
+
+            Domain: adds.contoso.com
+
+
+
+
+               TEST: Authentication (Auth)
+                  Authentication test: Successfully completed
+
+               TEST: Basic (Basc)
+                  The OS
+
+                  Microsoft Windows Server 2008 R2 Enterprise  (Service Pack level: 1.0)
+
+                  is supported.
+
+                  NETLOGON service is running
+
+                  kdc service is running
+
+                  DNSCACHE service is running
+
+                  DNS service is running
+
+                  DC is a DNS server
+
+                  Network adapters information:
+
+                  Adapter [00000007] Microsoft Hyper-V Network Adapter:
+
+                     MAC address is 00:15:5D:01:F6:0E
+                     IP Address is static
+                     IP address: 192.168.145.11, fe80::681f:ea63:2ec3:9b5e
+                     DNS servers:
+
+                        192.168.145.21 (DC21) [Valid]
+                        127.0.0.1 (dc11.adds.contoso.com.) [Valid]
+                  The A host record(s) for this DC was found
+                  The SOA record for the Active Directory zone was found
+                  The Active Directory zone on this DC/DNS server was found primary
+                  Root zone on this DC/DNS server was not found
+
+               TEST: Forwarders/Root hints (Forw)
+                  Recursion is enabled
+                  Forwarders Information:
+                     192.168.145.1 (<name unavailable>) [Invalid (unreachable)]
+                     Error: All forwarders in the forwarder list are invalid.
+
+                  Root hint Information:
+                     Name: a.root-servers.net. IP: 198.41.0.4 [Valid]
+                     Name: a.root-servers.net. IP: 2001:503:ba3e::2:30 [Invalid (unreachable)]
+                     Name: b.root-servers.net. IP: 192.228.79.201 [Valid]
+                     Name: b.root-servers.net. IP: 2001:500:84::b [Invalid (unreachable)]
+                     Name: c.root-servers.net. IP: 192.33.4.12 [Valid]
+                     Name: c.root-servers.net. IP: 2001:500:2::c [Invalid (unreachable)]
+                     Name: d.root-servers.net. IP: 128.8.10.90 [Invalid (unreachable)]
+                     Name: d.root-servers.net. IP: 199.7.91.13 [Valid]
+                     Name: d.root-servers.net. IP: 2001:500:2d::d [Invalid (unreachable)]
+                     Name: e.root-servers.net. IP: 192.203.230.10 [Valid]
+                     Name: f.root-servers.net. IP: 192.5.5.241 [Valid]
+                     Name: f.root-servers.net. IP: 2001:500:2f::f [Invalid (unreachable)]
+                     Name: g.root-servers.net. IP: 192.112.36.4 [Valid]
+                     Name: h.root-servers.net. IP: 128.63.2.53 [Valid]
+                     Name: h.root-servers.net. IP: 198.97.190.53 [Valid]
+                     Name: h.root-servers.net. IP: 2001:500:1::53 [Invalid (unreachable)]
+                     Name: i.root-servers.net. IP: 192.36.148.17 [Invalid (unreachable)]
+                     Name: i.root-servers.net. IP: 2001:7fe::53 [Invalid (unreachable)]
+                     Name: j.root-servers.net. IP: 192.58.128.30 [Valid]
+                     Name: j.root-servers.net. IP: 2001:503:c27::2:30 [Invalid (unreachable)]
+                     Name: k.root-servers.net. IP: 193.0.14.129 [Valid]
+                     Name: k.root-servers.net. IP: 2001:7fd::1 [Invalid (unreachable)]
+                     Name: l.root-servers.net. IP: 199.7.83.42 [Valid]
+                     Name: l.root-servers.net. IP: 2001:500:3::42 [Invalid (unreachable)]
+                     Name: m.root-servers.net. IP: 2001:dc3::35 [Invalid (unreachable)]
+                     Name: m.root-servers.net. IP: 202.12.27.33 [Valid]
+
+               TEST: Delegations (Del)
+                  Delegation information for the zone: adds.contoso.com.
+                     Delegated domain name: _msdcs.adds.contoso.com.
+                        DNS server: dc11.adds.contoso.com. IP:192.168.145.11 [Valid]
+
+               TEST: Dynamic update (Dyn)
+                  Test record dcdiag-test-record added successfully in zone adds.contoso.com
+                  Test record dcdiag-test-record deleted successfully in zone adds.contoso.com
+
+               TEST: Records registration (RReg)
+                  Network Adapter [00000007] Microsoft Hyper-V Network Adapter:
+
+                     Matching CNAME record found at DNS server 192.168.145.21:
+                     8a0e9e21-3eac-4103-931e-a90efd7876dd._msdcs.adds.contoso.com
+
+                     Matching A record found at DNS server 192.168.145.21:
+                     DC11.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.21:
+                     _ldap._tcp.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.21:
+                     _ldap._tcp.460d2190-2223-43cb-8b92-11c306e08be8.domains._msdcs.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.21:
+                     _kerberos._tcp.dc._msdcs.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.21:
+                     _ldap._tcp.dc._msdcs.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.21:
+                     _kerberos._tcp.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.21:
+                     _kerberos._udp.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.21:
+                     _kpasswd._tcp.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.21:
+                     _ldap._tcp.Default-First-Site-Name._sites.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.21:
+                     _kerberos._tcp.Default-First-Site-Name._sites.dc._msdcs.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.21:
+                     _ldap._tcp.Default-First-Site-Name._sites.dc._msdcs.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.21:
+                     _kerberos._tcp.Default-First-Site-Name._sites.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.21:
+                     _ldap._tcp.gc._msdcs.adds.contoso.com
+
+                     Matching A record found at DNS server 192.168.145.21:
+                     gc._msdcs.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.21:
+                     _gc._tcp.Default-First-Site-Name._sites.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.21:
+                     _ldap._tcp.Default-First-Site-Name._sites.gc._msdcs.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.21:
+                     _ldap._tcp.pdc._msdcs.adds.contoso.com
+
+                     Matching CNAME record found at DNS server 192.168.145.11:
+                     8a0e9e21-3eac-4103-931e-a90efd7876dd._msdcs.adds.contoso.com
+
+                     Matching A record found at DNS server 192.168.145.11:
+                     DC11.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.11:
+                     _ldap._tcp.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.11:
+                     _ldap._tcp.460d2190-2223-43cb-8b92-11c306e08be8.domains._msdcs.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.11:
+                     _kerberos._tcp.dc._msdcs.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.11:
+                     _ldap._tcp.dc._msdcs.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.11:
+                     _kerberos._tcp.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.11:
+                     _kerberos._udp.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.11:
+                     _kpasswd._tcp.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.11:
+                     _ldap._tcp.Default-First-Site-Name._sites.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.11:
+                     _kerberos._tcp.Default-First-Site-Name._sites.dc._msdcs.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.11:
+                     _ldap._tcp.Default-First-Site-Name._sites.dc._msdcs.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.11:
+                     _kerberos._tcp.Default-First-Site-Name._sites.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.11:
+                     _ldap._tcp.gc._msdcs.adds.contoso.com
+
+                     Matching A record found at DNS server 192.168.145.11:
+                     gc._msdcs.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.11:
+                     _gc._tcp.Default-First-Site-Name._sites.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.11:
+                     _ldap._tcp.Default-First-Site-Name._sites.gc._msdcs.adds.contoso.com
+
+                     Matching  SRV record found at DNS server 192.168.145.11:
+                     _ldap._tcp.pdc._msdcs.adds.contoso.com
+
+
+         Summary of test results for DNS servers used by the above domain
+
+         controllers:
+
+
+
+            DNS server: 128.8.10.90 (d.root-servers.net.)
+
+               1 test failure on this DNS server
+
+               PTR record query for the 1.0.0.127.in-addr.arpa. failed on the DNS server 128.8.10.90               [Error details: 1460 (Type: Win32 - Description: This operation returned because the timeout period expired.)]
+
+            DNS server: 192.168.145.1 (<name unavailable>)
+
+               1 test failure on this DNS server
+
+               PTR record query for the 1.0.0.127.in-addr.arpa. failed on the DNS server 192.168.145.1               [Error details: 1460 (Type: Win32 - Description: This operation returned because the timeout period expired.)]
+
+            DNS server: 192.36.148.17 (i.root-servers.net.)
+
+               1 test failure on this DNS server
+
+               PTR record query for the 1.0.0.127.in-addr.arpa. failed on the DNS server 192.36.148.17               [Error details: 1460 (Type: Win32 - Description: This operation returned because the timeout period expired.)]
+
+            DNS server: 2001:500:1::53 (h.root-servers.net.)
+
+               1 test failure on this DNS server
+
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:500:1::53               [Error details: 1460 (Type: Win32 - Description: This operation returned because the timeout period expired.)]
+
+            DNS server: 2001:500:2::c (c.root-servers.net.)
+
+               1 test failure on this DNS server
+
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:500:2::c               [Error details: 1460 (Type: Win32 - Description: This operation returned because the timeout period expired.)]
+
+            DNS server: 2001:500:2d::d (d.root-servers.net.)
+
+               1 test failure on this DNS server
+
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:500:2d::d               [Error details: 1460 (Type: Win32 - Description: This operation returned because the timeout period expired.)]
+
+            DNS server: 2001:500:2f::f (f.root-servers.net.)
+
+               1 test failure on this DNS server
+
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:500:2f::f               [Error details: 1460 (Type: Win32 - Description: This operation returned because the timeout period expired.)]
+
+            DNS server: 2001:500:3::42 (l.root-servers.net.)
+
+               1 test failure on this DNS server
+
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:500:3::42               [Error details: 1460 (Type: Win32 - Description: This operation returned because the timeout period expired.)]
+
+            DNS server: 2001:500:84::b (b.root-servers.net.)
+
+               1 test failure on this DNS server
+
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:500:84::b               [Error details: 1460 (Type: Win32 - Description: This operation returned because the timeout period expired.)]
+
+            DNS server: 2001:503:ba3e::2:30 (a.root-servers.net.)
+
+               1 test failure on this DNS server
+
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:503:ba3e::2:30               [Error details: 1460 (Type: Win32 - Description: This operation returned because the timeout period expired.)]
+
+            DNS server: 2001:503:c27::2:30 (j.root-servers.net.)
+
+               1 test failure on this DNS server
+
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:503:c27::2:30               [Error details: 1460 (Type: Win32 - Description: This operation returned because the timeout period expired.)]
+
+            DNS server: 2001:7fd::1 (k.root-servers.net.)
+
+               1 test failure on this DNS server
+
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:7fd::1               [Error details: 1460 (Type: Win32 - Description: This operation returned because the timeout period expired.)]
+
+            DNS server: 2001:7fe::53 (i.root-servers.net.)
+
+               1 test failure on this DNS server
+
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:7fe::53               [Error details: 1460 (Type: Win32 - Description: This operation returned because the timeout period expired.)]
+
+            DNS server: 2001:dc3::35 (m.root-servers.net.)
+
+               1 test failure on this DNS server
+
+               PTR record query for the 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa failed on the DNS server 2001:dc3::35               [Error details: 1460 (Type: Win32 - Description: This operation returned because the timeout period expired.)]
+
+            DNS server: 128.63.2.53 (h.root-servers.net.)
+
+               All tests passed on this DNS server
+
+
+            DNS server: 192.112.36.4 (g.root-servers.net.)
+
+               All tests passed on this DNS server
+
+
+            DNS server: 192.168.145.11 (dc11.adds.contoso.com.)
+
+               All tests passed on this DNS server
+
+               Name resolution is functional._ldap._tcp SRV record for the forest root domain is registered
+               DNS delegation for the domain  _msdcs.adds.contoso.com. is operational on IP 192.168.145.11
+
+
+            DNS server: 192.168.145.21 (DC21)
+
+               All tests passed on this DNS server
+
+               Name resolution is functional._ldap._tcp SRV record for the forest root domain is registered
+
+            DNS server: 192.203.230.10 (e.root-servers.net.)
+
+               All tests passed on this DNS server
+
+
+            DNS server: 192.228.79.201 (b.root-servers.net.)
+
+               All tests passed on this DNS server
+
+
+            DNS server: 192.33.4.12 (c.root-servers.net.)
+
+               All tests passed on this DNS server
+
+
+            DNS server: 192.5.5.241 (f.root-servers.net.)
+
+               All tests passed on this DNS server
+
+
+            DNS server: 192.58.128.30 (j.root-servers.net.)
+
+               All tests passed on this DNS server
+
+
+            DNS server: 193.0.14.129 (k.root-servers.net.)
+
+               All tests passed on this DNS server
+
+
+            DNS server: 198.41.0.4 (a.root-servers.net.)
+
+               All tests passed on this DNS server
+
+
+            DNS server: 198.97.190.53 (h.root-servers.net.)
+
+               All tests passed on this DNS server
+
+
+            DNS server: 199.7.83.42 (l.root-servers.net.)
+
+               All tests passed on this DNS server
+
+
+            DNS server: 199.7.91.13 (d.root-servers.net.)
+
+               All tests passed on this DNS server
+
+
+            DNS server: 202.12.27.33 (m.root-servers.net.)
+
+               All tests passed on this DNS server
+
+
+         Summary of DNS test results:
+
+
+                                            Auth Basc Forw Del  Dyn  RReg Ext
+            _________________________________________________________________
+            Domain: adds.contoso.com
+
+               DC11                         PASS PASS FAIL PASS PASS PASS n/a
+
+         ......................... adds.contoso.com failed test DNS
+
+      Starting test: LocatorCheck
+
+         GC Name: \\DC11.adds.contoso.com
+
+         Locator Flags: 0xe00031fd
+         PDC Name: \\DC11.adds.contoso.com
+         Locator Flags: 0xe00031fd
+         Time Server Name: \\DC11.adds.contoso.com
+         Locator Flags: 0xe00031fd
+         Preferred Time Server Name: \\DC11.adds.contoso.com
+         Locator Flags: 0xe00031fd
+         KDC Name: \\DC11.adds.contoso.com
+         Locator Flags: 0xe00031fd
+         ......................... adds.contoso.com passed test LocatorCheck
+
+      Starting test: FsmoCheck
+
+         GC Name: \\DC11.adds.contoso.com
+
+         Locator Flags: 0xe00031fd
+         PDC Name: \\DC11.adds.contoso.com
+         Locator Flags: 0xe00031fd
+         Time Server Name: \\DC11.adds.contoso.com
+         Locator Flags: 0xe00031fd
+         Preferred Time Server Name: \\DC11.adds.contoso.com
+         Locator Flags: 0xe00031fd
+         KDC Name: \\DC11.adds.contoso.com
+         Locator Flags: 0xe00031fd
+         ......................... adds.contoso.com passed test FsmoCheck
+
+      Starting test: Intersite
+
+         Skipping site Default-First-Site-Name, this site is outside the scope
+
+         provided by the command line arguments provided.
+         ......................... adds.contoso.com passed test Intersite
+

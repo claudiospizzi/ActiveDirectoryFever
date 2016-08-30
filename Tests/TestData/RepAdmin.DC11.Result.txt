@@ -1,0 +1,11 @@
+showrepl_COLUMNS,Destination DSA Site,Destination DSA,Naming Context,Source DSA Site,Source DSA,Transport Type,Number of Failures,Last Failure Time,Last Success Time,Last Failure Status
+showrepl_INFO,Default-First-Site-Name,DC11,"DC=adds,DC=contoso,DC=com",Default-First-Site-Name,DC21,RPC,0,0,2016-02-05 14:38:31,0
+showrepl_INFO,Default-First-Site-Name,DC11,"DC=adds,DC=contoso,DC=com",Default-First-Site-Name,DC31,RPC,0,0,2016-02-05 14:38:31,0
+showrepl_INFO,Default-First-Site-Name,DC11,"CN=Configuration,DC=adds,DC=contoso,DC=com",Default-First-Site-Name,DC21,RPC,0,0,2016-02-05 14:38:31,0
+showrepl_INFO,Default-First-Site-Name,DC11,"CN=Configuration,DC=adds,DC=contoso,DC=com",Default-First-Site-Name,DC31,RPC,0,0,2016-02-05 14:38:31,0
+showrepl_INFO,Default-First-Site-Name,DC11,"CN=Schema,CN=Configuration,DC=adds,DC=contoso,DC=com",Default-First-Site-Name,DC21,RPC,0,0,2016-02-05 14:38:31,0
+showrepl_INFO,Default-First-Site-Name,DC11,"CN=Schema,CN=Configuration,DC=adds,DC=contoso,DC=com",Default-First-Site-Name,DC31,RPC,0,0,2016-02-05 14:38:31,0
+showrepl_INFO,Default-First-Site-Name,DC11,"DC=DomainDnsZones,DC=adds,DC=contoso,DC=com",Default-First-Site-Name,DC21,RPC,0,0,2016-02-05 14:38:42,0
+showrepl_INFO,Default-First-Site-Name,DC11,"DC=DomainDnsZones,DC=adds,DC=contoso,DC=com",Default-First-Site-Name,DC31,RPC,0,0,2016-02-05 14:38:57,0
+showrepl_INFO,Default-First-Site-Name,DC11,"DC=ForestDnsZones,DC=adds,DC=contoso,DC=com",Default-First-Site-Name,DC31,RPC,0,0,2016-02-05 14:42:30,0
+showrepl_INFO,Default-First-Site-Name,DC11,"DC=ForestDnsZones,DC=adds,DC=contoso,DC=com",Default-First-Site-Name,DC21,RPC,0,0,2016-02-05 14:42:51,0
