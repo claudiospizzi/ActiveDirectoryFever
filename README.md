@@ -57,15 +57,6 @@ The module contains the following cmdlets:
 | Test-ADDomainControllerReplication | Replication test of Active Directory Domain Controllers by using the build-in and trusted "repadmin.exe" command line tool. |
 
 
-## Versions
-
-### 1.0.0
-
-- Initial public release
-- Health and replication diagnostic test functions
-- Change detection function based on USN and DirSync
-
-
 ## Examples
 
 Use the following commands to test the health of the Domain Controllers and
