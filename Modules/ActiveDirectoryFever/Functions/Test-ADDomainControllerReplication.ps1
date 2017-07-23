@@ -113,7 +113,7 @@ function Test-ADDomainControllerReplication
                     $Result = $Job | Receive-Job -ErrorAction Stop
 
                     # Check if the result is empty
-                    if ($Result -ne $null)
+                    if ($null -ne $Result)
                     {
                         # Iterating all objects
                         foreach ($ChildResult in ($Result | ConvertFrom-Csv))
