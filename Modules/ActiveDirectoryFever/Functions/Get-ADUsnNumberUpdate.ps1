@@ -190,7 +190,7 @@ function Get-ADUsnNumberUpdate
                         {
                             $Object.Action = "CREATE"
                         }
-                        elseif ($SearchObject.Properties["IsDeleted"][0] -eq $null)
+                        elseif ($null -eq $SearchObject.Properties["IsDeleted"][0])
                         {
                             $Object.Action = "MODIFY"
                         }
