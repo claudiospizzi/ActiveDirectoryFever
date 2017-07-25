@@ -1,6 +1,7 @@
 
 function New-ADChangeObject
 {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
     param
     (
         [Parameter(Mandatory=$true)]

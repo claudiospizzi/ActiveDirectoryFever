@@ -110,7 +110,7 @@ function Get-ADDirSyncChange
         $Searcher = @{}
 
         # The Active Directory properties to load
-        $Properties = "WhenChanged", "ObjectCategory", "ObjectSID"
+        #$Properties = "WhenChanged", "ObjectCategory", "ObjectSID"
         $CommonProperties = "", "ObjectGuid", "ParentGuid", "InstanceType", "DistinguishedName", "AdsPath", "Name", "IsDeleted", "LastKnownParent", "msds-LastKnownRDN"
 
         # Check the cookie file variable

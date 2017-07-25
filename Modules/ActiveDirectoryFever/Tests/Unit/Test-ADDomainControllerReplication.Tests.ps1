@@ -17,8 +17,11 @@ Describe 'Test-ADDomainControllerReplication' {
 
         It 'OfflineThrowException' {
 
+            # Arrange
+            $computerName = 'UNKNOWN'
+
             # Act
-            { $Result = Test-ADDomainControllerReplication -ComputerName 'UNKNOWN' -ErrorAction Stop } | Should Throw
+            { Test-ADDomainControllerReplication -ComputerName $computerName -ErrorAction Stop } | Should Throw
 
             # Assert
             Assert-MockCalled 'Invoke-Command' -ModuleName 'ActiveDirectoryFever' -Times 1 -Exactly
