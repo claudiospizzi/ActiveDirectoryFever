@@ -18,7 +18,7 @@
     # CompanyName = ''
 
     # Copyright statement for this module
-    Copyright = 'Copyright (c) 2016 by Claudio Spizzi. Licensed under MIT license.'
+    Copyright = 'Copyright (c) 2018 by Claudio Spizzi. Licensed under MIT license.'
 
     # Description of the functionality provided by this module
     Description = 'PowerShell Module with additional custom functions and cmdlets for Windows Active Directory.'
