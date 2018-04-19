@@ -1,7 +1,7 @@
 
 Properties {
 
-    $ModuleNames = 'ActiveDirectoryFever'
+    $ModuleNames    = 'ActiveDirectoryFever'
 
     $GalleryEnabled = $true
     $GalleryKey     = $Env:PSGalleryKey
