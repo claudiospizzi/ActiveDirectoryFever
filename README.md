@@ -12,7 +12,7 @@ Directory.
 
 ## Introduction
 
-This is a personal PowerShell Module by Claudio Spizzi.It is used to manage
+This is a personal PowerShell Module by Claudio Spizzi. It is used to manage
 Windows Active Directory, e.g. testing the diagnostics (dcdiag) and replication
 (replsum) health or monitor the Active Directory changes.
 

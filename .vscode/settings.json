@@ -1,5 +1,11 @@
 {
-    "files.trimTrailingWhitespace": false,
+    // Trim trailing whitespaces, but not for markdown
+    "files.trimTrailingWhitespace": true,
+    "[markdown]": {
+        "files.trimTrailingWhitespace": false
+    },
+
+    // Exclude files form the explorer tree
     "files.exclude": {
         "bin/**": true,
         "tst/**": true,
@@ -7,14 +13,13 @@
         "Sources/*/packages/**": true,
         "Sources/*/TestResults/**": true
     },
-
     "search.exclude": {
         "bin": true,
         "tst": true
     },
 
     // PowerShell console behaviour
-    "powershell.debugging.createTemporaryIntegratedConsole": false,
+    "powershell.debugging.createTemporaryIntegratedConsole": true,
     "powershell.integratedConsole.showOnStartup": true,
     "powershell.integratedConsole.focusConsoleOnExecute": false,
 
@@ -27,17 +32,5 @@
     "powershell.codeFormatting.whitespaceAroundOperator": true,
     "powershell.codeFormatting.whitespaceAfterSeparator": true,
     "powershell.codeFormatting.ignoreOneLineBlock": true,
-    "powershell.codeFormatting.alignPropertyValuePairs": true,
-
-    "cSpell.words": [
-        "cmdlets",
-        "Spizzi",
-        "cmdlet",
-        "CHANGELOG",
-        "Veyor",
-        "AppVeyor",
-        "GitHub",
-        "PowerShell",
-        "claudiospizzi"
-    ]
+    "powershell.codeFormatting.alignPropertyValuePairs": true
 }
