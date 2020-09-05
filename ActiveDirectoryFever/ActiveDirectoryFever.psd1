@@ -54,12 +54,12 @@
 
     # Type files (.ps1xml) to be loaded when importing this module
     TypesToProcess = @(
-        'Resources\ActiveDirectoryFever.Types.ps1xml'
+        'ActiveDirectoryFever.Xml.Types.ps1xml'
     )
 
     # Format files (.ps1xml) to be loaded when importing this module
     FormatsToProcess = @(
-        'Resources\ActiveDirectoryFever.Formats.ps1xml'
+        'ActiveDirectoryFever.Xml.Format.ps1xml'
     )
 
     # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
